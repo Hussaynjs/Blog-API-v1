@@ -1,0 +1,467 @@
+openapi: 3.0.0
+info:
+  title: BLOG-API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://hussayn-blog-application.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerrequest'
+            example:
+              name: hussaini
+              email: hussaini@gmail.com
+              occupation: software emginerr
+              password: password
+              age: '12'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/logout:
+    delete:
+      tags:
+      - Auth
+      summary: logout
+      operationId: logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginrequest'
+            example:
+              email: hussaini@gmail.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/profile:
+    get:
+      tags:
+      - Users
+      summary: Profile
+      operationId: Profile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/630abe40a5beba6a13ab3848/posts:
+    get:
+      tags:
+      - Users
+      summary: get current user posts
+      operationId: getcurrentuserposts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/update-profile:
+    patch:
+      tags:
+      - Users
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+            example:
+              profilePics: /upload/computer-1.jpeg
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/update-password:
+    patch:
+      tags:
+      - Users
+      summary: Change Password
+      operationId: ChangePassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+            example:
+              oldPassword: password
+              newPassword: hussayn
+              confirmNewPassword: hussayn
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/delete-account:
+    delete:
+      tags:
+      - Users
+      summary: Delete Account
+      operationId: DeleteAccount
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /posts:
+    post:
+      tags:
+      - Posts
+      summary: create post
+      operationId: createpost
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createpostrequest'
+            example:
+              title: react essentals 2
+              description: To give you a gentle introduction, React is an open-source JavaScript library used for frontend development, which was developed by Facebook. Its component-based library lets you build high-quality user-interfaces for web apps
+              category: React
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - Posts
+      summary: get All Posts
+      operationId: getAllPosts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /posts/630ac4e056080483ec61877d:
+    delete:
+      tags:
+      - Posts
+      summary: delete post
+      operationId: deletepost
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /posts/630ac47456080483ec618779:
+    get:
+      tags:
+      - Posts
+      summary: get single post
+      operationId: getsinglepost
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /posts/630ac798a93e96d0a66f2e0b:
+    patch:
+      tags:
+      - Posts
+      summary: update post
+      operationId: updatepost
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updatepostrequest'
+            example:
+              image: /upload/computer-3.jpeg
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /posts/upload:
+    post:
+      tags:
+      - Posts
+      summary: upload img
+      operationId: uploadimg
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - upload
+              type: object
+              properties:
+                upload:
+                  type: string
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /posts/630ac47456080483ec618779/comments:
+    get:
+      tags:
+      - Posts
+      summary: post comments
+      operationId: postcomments
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /comments:
+    post:
+      tags:
+      - Comments
+      summary: create comments
+      operationId: createcomments
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createcommentsrequest'
+            example:
+              comment: useful tips sir, thanks
+              like: 1
+              post: 630ac47456080483ec618779
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /comments/630ad12d7a8a77fe2c646be7:
+    get:
+      tags:
+      - Comments
+      summary: get comment
+      operationId: getcomment
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    patch:
+      tags:
+      - Comments
+      summary: update comment
+      operationId: updatecomment
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updatecommentrequest'
+            example:
+              like: 0
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Comments
+      summary: delete comment
+      operationId: deletecomment
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - name
+      - email
+      - occupation
+      - password
+      - age
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        occupation:
+          type: string
+        password:
+          type: string
+        age:
+          type: string
+      example:
+        name: hussaini
+        email: hussaini@gmail.com
+        occupation: software emginerr
+        password: password
+        age: '12'
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: hussaini@gmail.com
+        password: password
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+      - profilePics
+      type: object
+      properties:
+        profilePics:
+          type: string
+      example:
+        profilePics: /upload/computer-1.jpeg
+    ChangePasswordRequest:
+      title: ChangePasswordRequest
+      required:
+      - oldPassword
+      - newPassword
+      - confirmNewPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+        confirmNewPassword:
+          type: string
+      example:
+        oldPassword: password
+        newPassword: hussayn
+        confirmNewPassword: hussayn
+    createpostrequest:
+      title: createpostrequest
+      required:
+      - title
+      - description
+      - category
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+      example:
+        title: react essentals 2
+        description: To give you a gentle introduction, React is an open-source JavaScript library used for frontend development, which was developed by Facebook. Its component-based library lets you build high-quality user-interfaces for web apps
+        category: React
+    updatepostrequest:
+      title: updatepostrequest
+      required:
+      - image
+      type: object
+      properties:
+        image:
+          type: string
+      example:
+        image: /upload/computer-3.jpeg
+    createcommentsrequest:
+      title: createcommentsrequest
+      required:
+      - comment
+      - like
+      - post
+      type: object
+      properties:
+        comment:
+          type: string
+        like:
+          type: integer
+          format: int32
+        post:
+          type: string
+      example:
+        comment: useful tips sir, thanks
+        like: 1
+        post: 630ac47456080483ec618779
+    updatecommentrequest:
+      title: updatecommentrequest
+      required:
+      - like
+      type: object
+      properties:
+        like:
+          type: integer
+          format: int32
+      example:
+        like: 0
+tags:
+- name: Auth
+- name: Users
+- name: Posts
+- name: Comments
